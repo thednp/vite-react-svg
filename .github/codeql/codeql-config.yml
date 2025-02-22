@@ -1,0 +1,3 @@
+paths:
+  - src/htmlToReact.mjs
+  - src/index.mjs
