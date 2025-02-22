@@ -65,9 +65,10 @@ export default function vitePluginSvgReact(options = {}) {
         const file = id.replace(postfixRE, "");
         // Resolve the file path
         /* istanbul ignore next @preserve - we cannot test this outside the vite runtime */
-        const filePath = !file.startsWith(cwd) && file.startsWith("/") && config?.publicDir
-          ? path.resolve(config.publicDir, file.slice(1))
-          : file;
+        const filePath =
+          !file.startsWith(cwd) && file.startsWith("/") && config?.publicDir
+            ? path.resolve(config.publicDir, file.slice(1))
+            : file;
         // Read the SVG file
         const svgCode = await fs.promises.readFile(filePath, "utf8");
 

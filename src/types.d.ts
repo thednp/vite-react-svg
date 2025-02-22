@@ -10,18 +10,20 @@ import type {
 
 import React from "react";
 
-const oo = React.createElement("a", {className: "", style: {margin: 0}})
+const oo = React.createElement("a", { className: "", style: { margin: 0 } });
 
 import type { FilterPattern } from "@rollup/pluginutils";
-import { transformWithEsbuild, type ResolvedConfig } from "vite";
+import { type ResolvedConfig, transformWithEsbuild } from "vite";
 
 export type VitePluginSvgReactOptions = Partial<ResolvedConfig> & {
   esbuildOptions?: Parameters<typeof transformWithEsbuild>[2];
   exclude?: FilterPattern;
   include?: FilterPattern;
-}
+};
 
-export declare const VitePlugiReactSVG: (config?: VitePluginSvgReactOptions) => {
+export declare const VitePlugiReactSVG: (
+  config?: VitePluginSvgReactOptions,
+) => {
   name: string;
   enforce: "pre" | "post" | undefined;
   configResolved: (cfg: VitePluginSvgReactOptions) => void;
@@ -63,7 +65,7 @@ export const htmlToReact: (
 export const htmlToDOM: (
   input?: string,
   options?: Partial<ParserOptions>,
-) => ParseResult['root'];
+) => ParseResult["root"];
 
 /**
  * Returns a quoted string if the key is a valid identifier,

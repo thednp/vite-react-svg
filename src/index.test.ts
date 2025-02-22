@@ -43,7 +43,6 @@ describe("vite-react-svg", () => {
     expect(result.code).toContain("viewBox");
   });
 
-
   it("should not have any default props", async () => {
     const plugin = svgReact();
     const svgPath = resolve(__dirname, "react-no-props.svg");
