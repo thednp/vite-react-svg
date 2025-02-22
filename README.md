@@ -27,8 +27,10 @@ Performance Benchmark (100 iterations x 5 samples):
 
 Relative Performance: vite-react-svg is 2.82x faster!
 ```
+**Note** - find `demo/benchmarks.ts` and run these tests yourself.
 
-### Key Advantages
+
+## Key Advantages
 * 🚀 **Superior Speed**: Processes SVGs 2.82x faster than alternatives
 * 🎯 **Consistent Performance**: Much lower variance in processing time (±11.93ms vs ±95.54ms)
 * ⚡ **Efficient Output**: Generates optimized output (720 bytes) comparable to alternatives
@@ -45,6 +47,7 @@ Standard Deviation (ms) - Lower is better
 vite-react-svg  │█ 12ms
 vite-plugin-svgr│████████████ 96ms
 ```
+**Note** - the results are coming from a desktop PC with NodeJS v23.5. Your results my vary.
 
 
 ## Features
