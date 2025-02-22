@@ -75,7 +75,7 @@ const DomToReact = (input, depth = 0) => {
   if (attributeEntries.length || isReplacement) {
     const attributesHTML = isReplacement ? attributes : attributeEntries.map(([key, value]) =>
       `${quoteText(reactAttr(key))}: ${reactValue(value)}`).join(', ');
-    output += isReplacement ? attributesHTML : `{ ${attributesHTML} }`;
+    output += isReplacement ? attributesHTML : `{ ${attributesHTML}, ...props }`;
     output += children?.length ? ',' : '';
   }
   if (children?.length) {

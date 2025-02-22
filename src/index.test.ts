@@ -37,7 +37,7 @@ describe("vite-react-svg", () => {
     expect(result.code).toContain("export default function SVGComponent");
 
     // Check if the component handles props
-    expect(result.code).toContain("initialProps = {}");
+    expect(result.code).toContain("props = {}");
 
     // Check if SVG content is included
     expect(result.code).toContain("viewBox");

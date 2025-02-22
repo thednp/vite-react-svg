@@ -3,7 +3,7 @@ import path from "node:path";
 import process from "node:process";
 import { transformWithEsbuild } from "vite";
 import { createFilter } from "@rollup/pluginutils";
-import { htmlToReact, quoteText, reactAttr, reactValue } from "./htmlToReact.mjs";
+import { htmlToReact } from "./htmlToReact.mjs";
 
 const cwd = process.cwd();
 
@@ -17,57 +17,12 @@ const cwd = process.cwd();
  * @returns {string} the compiled code
  */
 function transformSvgToReact(svgCode) {
-  // Convert the SVG string directly to React code using htmlToVanCode
-  const reactCode = htmlToReact(svgCode, { replacement: "props" });
+  // Convert the SVG string directly to React code
+  const reactCode = htmlToReact(svgCode);
 
   /** @returns {string} */
   const getCode = () => {
-    const {
-      transform,
-      stroke,
-      strokeOpacity,
-      strokeWidth,
-      fill,
-      fillOpacity,
-      width,
-      height,
-      className,
-      style,
-      ...rest
-    } = reactCode.attributes || /* istanbul ignore next @preserve */ {};
-
     const output = `
-const props = {
-  ${
-      Object.entries(rest)
-        .map(([key, value]) => `${quoteText(reactAttr(key))}: ${reactValue(value)}`)
-        .join(",\n")
-    },
-};
-
-  props.fill = initialProps.fill || ${reactValue(fill) || `null`};
-  props.fillOpacity = initialProps.fillOpacity || ${reactValue(fillOpacity) || `null`};
-  props.stroke = initialProps.stroke || ${reactValue(stroke) || `null`};
-  props.strokeOpacity = initialProps.strokeOpacity || ${
-    reactValue(strokeOpacity) || `null`
-  };
-  props.strokeWidth = initialProps.strokeWidth || ${reactValue(strokeWidth) || `null`};
-  props.className = initialProps.className || ${reactValue(className) || `null`};
-  props.style = initialProps.style || ${reactValue(style) || `null`};
-  props.transform = initialProps.transform || ${reactValue(transform) || `null`};
-
-  if (["null", null].every(w => w !== initialProps.width)) {
-    props.width = initialProps.width || ${
-      reactValue(width) || /* istanbul ignore next @preserve */ `null`
-    };
-  }
-
-  if (["null", null].every(h => h !== initialProps.height)) {
-    props.height = initialProps.height || ${
-      reactValue(height) || /* istanbul ignore next @preserve */ `null`
-    };
-  }
-
 return ${reactCode.code};
 `.trim();
 
@@ -78,7 +33,7 @@ return ${reactCode.code};
   const componentCode = `
 import { createElement } from "react";
 
-export default function SVGComponent(initialProps = {}) {
+export default function SVGComponent(props = {}) {
 	${getCode()}
 }
 `.trim();
