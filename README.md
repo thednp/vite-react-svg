@@ -11,8 +11,6 @@
 
 A Vite plugin that transforms SVG files into React components using the [DOMParser](https://github.com/thednp/domparser).
 
-**Note:** The plugin will also resolve SVG files from the `/public` folder or any valid `viteConfig.publicDir` option.
-
 ## Performance
 This plugin significantly outperforms alternatives in terms of speed and consistency. Here are the benchmark results:
 
@@ -144,9 +142,9 @@ const app = () => {
 }
 ```
 **Notes**:
- - all `SVGSVGElement` properties should be supported;
- * all properties present in the markup of your SVG files will be used as default values;
- * `viewBox` and `xmlns` are somewhat required in order for the SVG to be rendered properly.
+ * All properties present in the markup of your SVG files will be used as default values;
+ * The `viewBox` and `xmlns` properties are somewhat required in order for the SVG to be rendered properly;
+ * The plugin will also resolve SVG files from the `/public` folder or any valid `viteConfig.publicDir` option.
 
 
 ## Contributing

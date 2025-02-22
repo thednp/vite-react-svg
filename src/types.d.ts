@@ -10,8 +10,6 @@ import type {
 
 import React from "react";
 
-const oo = React.createElement("a", { className: "", style: { margin: 0 } });
-
 import type { FilterPattern } from "@rollup/pluginutils";
 import { type ResolvedConfig, transformWithEsbuild } from "vite";
 
@@ -21,7 +19,7 @@ export type VitePluginSvgReactOptions = Partial<ResolvedConfig> & {
   include?: FilterPattern;
 };
 
-export declare const VitePlugiReactSVG: (
+export declare const VitePluginReactSVG: (
   config?: VitePluginSvgReactOptions,
 ) => {
   name: string;
@@ -29,7 +27,7 @@ export declare const VitePlugiReactSVG: (
   configResolved: (cfg: VitePluginSvgReactOptions) => void;
   load: (id: string) => Promise<{ code: string; map: null } | null>;
 };
-export default VitePlugiReactSVG;
+export default VitePluginReactSVG;
 
 export type ReactCode = {
   code: string;

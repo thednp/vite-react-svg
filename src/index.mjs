@@ -7,8 +7,7 @@ import { htmlToReact } from "./htmlToReact.mjs";
 
 const cwd = process.cwd();
 
-/** @typedef {import("vite").UserConfig} UserConfig */
-/** @typedef {typeof import("./types").VitePlugiReactSVG} VitePlugiReactSVG */
+/** @typedef {typeof import("./types").VitePluginReactSVG} VitePluginReactSVG */
 /** @typedef {import("./types").VitePluginSvgReactOptions} VitePluginSvgReactOptions */
 
 /**
@@ -20,28 +19,19 @@ function transformSvgToReact(svgCode) {
   // Convert the SVG string directly to React code
   const reactCode = htmlToReact(svgCode);
 
-  /** @returns {string} */
-  const getCode = () => {
-    const output = `
-return ${reactCode.code};
-`.trim();
-
-    return output;
-  };
-
   // Wrap the converted code in a component
   const componentCode = `
 import { createElement } from "react";
 
 export default function SVGComponent(props = {}) {
-	${getCode()}
-}
+	return ${reactCode.code};
+};
 `.trim();
 
   return componentCode;
 }
 
-/** @type {VitePlugiReactSVG} */
+/** @type {VitePluginReactSVG} */
 export default function vitePluginSvgReact(options = {}) {
   const {
     esbuildOptions,
