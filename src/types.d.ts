@@ -37,8 +37,6 @@ export type ReactCode = {
 type ChildEl = ChildLike & Omit<NodeLike, "attributes"> & {
   attributes: Record<string, string>;
 } & {
-  //   nodeName: string;
-  //   tagName: string;
   children: ChildLike[];
 };
 

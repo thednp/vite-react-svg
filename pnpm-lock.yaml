@@ -12,8 +12,8 @@ importers:
         specifier: ^5.1.4
         version: 5.1.4(rollup@4.34.8)
       '@thednp/domparser':
-        specifier: ^0.0.2
-        version: 0.0.2
+        specifier: ^0.0.3
+        version: 0.0.3
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -562,8 +562,8 @@ packages:
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
 
-  '@thednp/domparser@0.0.2':
-    resolution: {integrity: sha512-ne163PRe1THELzq81Qsq0911SOaAamhkkRz9AkbpE1aF1nSK7BddAdUFshXpuMlLznZQcO4MySfT7WPSAYxd3A==}
+  '@thednp/domparser@0.0.3':
+    resolution: {integrity: sha512-pMZpuXG94tkTks6xchmLSvrODayqUh1Jehc/eGYQIEF45QLLy/GywInfQSP1iZ6j3Rye67HjRcdBU3+Qa214dA==}
 
   '@types/aria-query@5.0.4':
     resolution: {integrity: sha512-rfT93uj5s0PRL7EzccGMs3brplhcrghnDoV26NqKhCAS1hVo+WdNsPvE/yb6ilfr5hi2MEk6d5EWJTKdxg8jVw==}
@@ -1834,7 +1834,7 @@ snapshots:
     dependencies:
       '@testing-library/dom': 10.4.0
 
-  '@thednp/domparser@0.0.2': {}
+  '@thednp/domparser@0.0.3': {}
 
   '@types/aria-query@5.0.4': {}
 

@@ -1,6 +1,6 @@
 {
   "name": "vite-react-svg",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Vite plugin to transform SVGs into React components",
   "author": "thednp",
   "license": "MIT",
@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^5.1.4",
-    "@thednp/domparser": "^0.0.2",
+    "@thednp/domparser": "^0.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

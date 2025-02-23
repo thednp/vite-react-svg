@@ -28,8 +28,6 @@
     "jsx": "react-jsx"
   },
   "include": [
-    // "./demo/App.tsx",
-    // "./demo/index.tsx",
     "./src/index.test.ts",
     "./src/types.d.ts",
   ],

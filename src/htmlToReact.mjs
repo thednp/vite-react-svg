@@ -39,7 +39,7 @@ export const reactAttr = (att) => {
 
 /**
  * Returns the React value enclosed in quotes or brackets depending on the value.
- * @param {string | Record<string, string> | null} val
+ * @param {string | number} val
  */
 export const reactValue = (val) => {
   return `"${val}"`;
