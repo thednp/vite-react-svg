@@ -21,7 +21,6 @@ function transformSvgToReact(svgCode) {
 
   // Wrap the converted code in a component
   const componentCode = `
-// import { createElement } from "@createElement";
 import { createElement } from "react";
 
 export default function SVGComponent(props = {}) {
