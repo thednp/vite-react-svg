@@ -12,7 +12,7 @@
 A Vite plugin that transforms SVG files into React components using the [DOMParser](https://github.com/thednp/domparser).
 
 ## Performance
-This plugin significantly outperforms alternatives in terms of speed and consistency. You can boost the render speed by up to 3 times. Here are the benchmark results:
+This plugin significantly outperforms alternatives in terms of speed and consistency. You can boost the render speed of your SVG components by up to 3 times. Here are the benchmark results:
 
 ```
 Performance Benchmark (100 iterations x 5 samples):
@@ -29,10 +29,9 @@ Relative Performance: vite-react-svg is 2.97x faster!
 
 
 ## Key Advantages
-* 🚀 **Superior Speed**: Processes SVGs ~3x faster than alternatives
-* 🎯 **Consistent Performance**: Much lower variance in processing time (±11.21ms vs ±101.89ms)
-* ⚡ **Efficient Output**: Generates optimized output (720 bytes) comparable to alternatives
-* 🔄 **Ecosystem Compatible**: Uses esbuild formatter for seamless integration with other Vite plugins
+* 🚀 **Superior Speed**: Processes SVGs ~3x faster than alternatives;
+* 🎯 **Consistent Performance**: Much lower variance in processing time (±11.21ms vs ±101.89ms);
+* 🔄 **Ecosystem Compatible**: Uses esbuild formatter for seamless integration with other Vite plugins.
 
 
 Visual Performance Comparison:
