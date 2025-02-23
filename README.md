@@ -126,18 +126,17 @@ To add typescript support, edit your `src/vite-env.d.ts` (or any global types yo
 
 
 ### In Your Code
-```ts
+```tsx
 import Icon from './icon.svg?react'
 
 const app = () => {
-  return div(
-    Icon({ 
-      width: 24,
-      height: 24,
-      class: 'my-icon',
-      style: 'fill: "currentColor"'
-    })
-  )
+  return <div>
+    <Icon
+      class='my-icon'
+      width={24} height={24}
+      style={{ fill: "currentColor" }}
+    />
+  </div>
 }
 ```
 **Notes**:
