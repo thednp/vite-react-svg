@@ -43,8 +43,6 @@ vite-plugin-svgr│████████████████████�
 Standard Deviation (ms) - Lower is better
 vite-react-svg  │█ 11ms
 vite-plugin-svgr│██████████████ 102ms
-
-_Last updated: 2025-02-23_
 ```
 **Note** - the results are coming from a desktop PC with NodeJS v23.5. Your results my vary.
 
