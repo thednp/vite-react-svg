@@ -9,6 +9,7 @@ import type {
 } from "@thednp/domparser";
 
 import React from "react";
+type El = React.ElementType<"svg">;
 
 import type { FilterPattern } from "@rollup/pluginutils";
 import { type ResolvedConfig, transformWithEsbuild } from "vite";
@@ -49,14 +50,11 @@ type ChildEl = ChildLike & Omit<NodeLike, "attributes"> & {
  */
 export const DomToReact: (input: ChildEl, depth?: number) => string;
 
-export type ConverterOptions = { replacement?: string };
-
 /**
  * Converts HTML to React code.
  */
 export const htmlToReact: (
   input?: string,
-  converterOptions?: ConverterOptions,
 ) => ReactCode;
 
 /** Converts HTML to DOMLike */

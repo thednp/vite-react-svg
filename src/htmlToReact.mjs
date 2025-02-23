@@ -42,9 +42,6 @@ export const reactAttr = (att) => {
  * @param {string | Record<string, string> | null} val
  */
 export const reactValue = (val) => {
-  if (!val) return null;
-  // if (typeof val === "object") return `{${val}}`;
-  if (typeof val === "object") return JSON.stringify(val, null, 2);
   return `"${val}"`;
 }
 
@@ -65,19 +62,23 @@ const htmlToDOM = (input) => {
  */
 const DomToReact = (input, depth = 0) => {
   const { tagName, nodeName, attributes, children, nodeValue } = input;
-  const isReplacement = typeof attributes === 'string';
   const isText = nodeName === '#text';
   const firstChildIsText = children?.[0]?.nodeName === '#text';
-  const attributeEntries = isReplacement ? [] : Object.entries(attributes || {});
+  const attributeEntries = Object.entries(attributes || {});
   const spaces = "  ".repeat(depth); // Calculate spaces based on depth
   let output = isText ? '' : (spaces + `createElement("${tagName}", `);
 
-  if (attributeEntries.length || isReplacement) {
-    const attributesHTML = isReplacement ? attributes : attributeEntries.map(([key, value]) =>
-      `${quoteText(reactAttr(key))}: ${reactValue(value)}`).join(', ');
-    output += isReplacement ? attributesHTML : `{ ${attributesHTML}, ...props }`;
-    output += children?.length ? ',' : '';
-  }
+  const attributesHTML = (attributeEntries.length ?
+    attributeEntries.map(([key, value]) =>
+      `${quoteText(reactAttr(key))}: ${reactValue(value)}`
+    )
+    .join(', ')
+    : "")
+    // don't add props to children
+    .concat(depth === 0 ? ", ...props" : "");
+  output += !isText ? `{${attributesHTML}}` : "";
+  output += !isText && children?.length ? ',' : '';
+
   if (children?.length) {
     const childrenHTML = children
       // Increase depth for children
@@ -86,6 +87,7 @@ const DomToReact = (input, depth = 0) => {
       .join(',');
     output += `${childrenHTML}`;
   }
+  // text/comment nodes
   if (nodeValue) {
     output += `"${nodeValue}"`;
   }
@@ -100,13 +102,12 @@ const DomToReact = (input, depth = 0) => {
  * 
  * @type {htmlToReact}
  */
-export const htmlToReact = (input, options = {}) => {
-  const { replacement } = options;
+export const htmlToReact = (input) => {
   const doc = htmlToDOM(input);
   if (!doc?.children.length) return { code: '', attributes: {} };
   const { tagName, nodeName, attributes, children } = doc.children[0];
   // @ts-expect-error
-  const code = DomToReact({ tagName, nodeName, attributes: replacement || attributes, children });
+  const code = DomToReact({ tagName, nodeName, attributes, children });
 
   return { code, attributes };
 }

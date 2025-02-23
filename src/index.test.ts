@@ -6,6 +6,8 @@ import { VitePluginSvgReactOptions } from "./types";
 // import plugin
 import svgReact from "./index.mjs";
 
+import { htmlToReact } from "./htmlToReact.mjs";
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 describe("vite-react-svg", () => {
@@ -67,6 +69,35 @@ describe("vite-react-svg", () => {
     const plugin = svgReact();
     const result = await plugin.load?.("test.svg");
     expect(result).toBeNull();
+  });
+
+  it("should work with React special attributes", () => {
+    // a set of tests to add full coverage
+    // while the plugin is designed strictly for SVG
+    // we still need to handle React attribute namespace
+    const html = `
+  <fieldset>
+    "This is a text node"
+    <button class="btn" aria-disabled="true" data-disabled="true" disabled>click me</button>
+    <label for="text-input">Sample label</label>
+    <input type="text" id="text-input" name="text-input" value="Sample value" />
+  </fieldset>
+    `.trim();
+
+    const code = htmlToReact(html);
+    expect(code.attributes).toEqual({});
+  });
+
+  it("should handle invalid markup", () => {
+    expect(htmlToReact()).toEqual({ code: "", attributes: {} });
+
+    try {
+      // @ts-expect-error - we need to test this case
+      htmlToReact({});
+    } catch (er: unknown) {
+      expect(er).toBeInstanceOf(TypeError);
+      expect((er as TypeError).message).toEqual("input must be a string");
+    }
   });
 
   it("should accept plugin options", () => {

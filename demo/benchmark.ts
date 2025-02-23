@@ -74,9 +74,6 @@ const comp1 = await svg.load(filePath + "?react");
 // @ts-expect-error
 const comp2 = await svgr.load?.(filePath + "?react");
 
-// console.log({comp1})
-// console.log({comp2})
-
 // Compare output sizes
 console.log('\nOutput size comparison:');
 console.log('vite-react-svg output size:', comp1 ? comp1.code.length : 0, 'bytes');

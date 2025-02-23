@@ -9,7 +9,8 @@ export default defineConfig({
       reporter: ["html", "text", "lcov"],
       enabled: true,
       include: [
-        "src/index.mjs"
+        "src/index.mjs",
+        "src/htmlToReact.mjs",
       ],
     },
   },

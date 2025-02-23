@@ -19,18 +19,18 @@ Performance Benchmark (100 iterations x 5 samples):
 ┌─────────────────┬────────────┬──────────────┬──────────────┐
 │ Plugin          │ Time (ms)  │ Std Dev (ms) │ Output Size  │
 ├─────────────────┼────────────┼──────────────┼──────────────┤
-│ vite-react-svg  │    76.99   │    ±11.93    │   720 bytes  │
-│ vite-plugin-svgr│   217.36   │    ±95.54    │   708 bytes  │
+│ vite-react-svg  │    75.14   │    ±11.21    │   833 bytes  │
+│ vite-plugin-svgr│   222.91   │   ±101.89    │   787 bytes  │
 └─────────────────┴────────────┴──────────────┴──────────────┘
 
-Relative Performance: vite-react-svg is 2.82x faster!
+Relative Performance: vite-react-svg is 2.97x faster!
 ```
 **Note** - find `demo/benchmarks.ts` and run these tests yourself.
 
 
 ## Key Advantages
-* 🚀 **Superior Speed**: Processes SVGs 2.82x faster than alternatives
-* 🎯 **Consistent Performance**: Much lower variance in processing time (±11.93ms vs ±95.54ms)
+* 🚀 **Superior Speed**: Processes SVGs ~3x faster than alternatives
+* 🎯 **Consistent Performance**: Much lower variance in processing time (±11.21ms vs ±101.89ms)
 * ⚡ **Efficient Output**: Generates optimized output (720 bytes) comparable to alternatives
 * 🔄 **Ecosystem Compatible**: Uses esbuild formatter for seamless integration with other Vite plugins
 
@@ -38,12 +38,14 @@ Relative Performance: vite-react-svg is 2.82x faster!
 Visual Performance Comparison:
 ```
 Processing Time (ms) - Lower is better
-vite-react-svg  │████████ 77ms
-vite-plugin-svgr│████████████████████████ 217ms
+vite-react-svg  │███████ 75ms
+vite-plugin-svgr│██████████████████████████ 223ms
 
 Standard Deviation (ms) - Lower is better
-vite-react-svg  │█ 12ms
-vite-plugin-svgr│████████████ 96ms
+vite-react-svg  │█ 11ms
+vite-plugin-svgr│██████████████ 102ms
+
+_Last updated: 2025-02-23_
 ```
 **Note** - the results are coming from a desktop PC with NodeJS v23.5. Your results my vary.
 
