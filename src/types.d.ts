@@ -9,7 +9,6 @@ import type {
 } from "@thednp/domparser";
 
 import React from "react";
-type El = React.ElementType<"svg">;
 
 import type { FilterPattern } from "@rollup/pluginutils";
 import { type ResolvedConfig, transformWithEsbuild } from "vite";
