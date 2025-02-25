@@ -31,7 +31,6 @@
   "files": [
     "src/index.mjs",
     "src/htmlToReact.mjs",
-    "src/index.test.ts",
     "src/global.d.ts",
     "src/types.d.ts",
     "README.md",
@@ -39,11 +38,12 @@
   ],
   "scripts": {
     "dev": "vite serve demo --config vite.config.ts",
+    "bench": "node --experimental-transform-types demo/benchmark.ts",
     "test": "vitest --config vitest.config.ts",
     "test-ui": "vitest --config vitest.config.ts --ui=true",
     "prepublishOnly": "pnpm up && pnpm lint && pnpm format && pnpm badges",
     "badges": "npx -p dependency-version-badge update-badge react typescript vitest vite",
-    "format": "deno fmt src/index.mjs src/index.test.ts src/types.d.ts",
+    "format": "deno fmt src/*.mjs src/*.ts demo/*.tsx demo/*.ts",
     "lint": "pnpm lint:ts && pnpm check:ts",
     "lint:ts": "deno lint src/index.mjs src/index.test.ts",
     "fix:ts": "deno lint src/index.mjs src/index.test.ts --fix",
