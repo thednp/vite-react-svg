@@ -3,10 +3,10 @@
 [![Coverage Status](https://coveralls.io/repos/github/thednp/vite-react-svg/badge.svg)](https://coveralls.io/github/thednp/vite-react-svg)
 [![ci](https://github.com/thednp/vite-react-svg/actions/workflows/ci.yml/badge.svg)](https://github.com/thednp/vite-react-svg/actions/workflows/ci.yml)
 [![NPM Version](https://img.shields.io/npm/v/vite-react-svg.svg)](https://www.npmjs.com/package/vite-react-svg)
-[![typescript version](https://img.shields.io/badge/typescript-5.7.3-brightgreen)](https://www.typescriptlang.org/)
+[![typescript version](https://img.shields.io/badge/typescript-5.8.2-brightgreen)](https://www.typescriptlang.org/)
 [![react version](https://img.shields.io/badge/react-19.0.0-brightgreen)](https://github.com/facebook/react)
-[![vitest version](https://img.shields.io/badge/vitest-3.0.6-brightgreen)](https://www.vitest.dev/)
-[![vite version](https://img.shields.io/badge/vite-6.1.1-brightgreen)](https://vite.dev)
+[![vitest version](https://img.shields.io/badge/vitest-3.0.7-brightgreen)](https://www.vitest.dev/)
+[![vite version](https://img.shields.io/badge/vite-6.2.0-brightgreen)](https://vite.dev)
 
 
 A Vite plugin that transforms SVG files into React components using the [DOMParser](https://github.com/thednp/domparser).
@@ -23,7 +23,9 @@ Performance Benchmark (100 iterations x 5 samples):
 
 Relative Performance: **vite-react-svg** is 2.97x faster!
 
-**Note** - find `demo/benchmarks.ts` and run these tests yourself.
+**Notes**
+- find [demo/benchmarks.ts](https://github.com/thednp/vite-react-svg/blob/master/demo/benchmark.ts) and run these tests yourself.
+- other tools like [unplugin-icons](https://github.com/unplugin/unplugin-icons/blob/main/README.md#L459-L629) require SVGR and fall into the same performance category.
 
 
 ## Key Advantages
@@ -68,11 +70,11 @@ yarn add -D vite-react-svg
 ```
 
 ```bash
-deno add npm:vite-react-svg
+deno add -D npm:vite-react-svg
 ```
 
 ```bash
-bun install vite-react-svg
+bun add -D vite-react-svg
 ```
 
 
