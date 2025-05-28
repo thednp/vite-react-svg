@@ -3,10 +3,10 @@
 [![Coverage Status](https://coveralls.io/repos/github/thednp/vite-react-svg/badge.svg)](https://coveralls.io/github/thednp/vite-react-svg)
 [![ci](https://github.com/thednp/vite-react-svg/actions/workflows/ci.yml/badge.svg)](https://github.com/thednp/vite-react-svg/actions/workflows/ci.yml)
 [![NPM Version](https://img.shields.io/npm/v/vite-react-svg.svg)](https://www.npmjs.com/package/vite-react-svg)
-[![typescript version](https://img.shields.io/badge/typescript-5.8.2-brightgreen)](https://www.typescriptlang.org/)
-[![react version](https://img.shields.io/badge/react-19.0.0-brightgreen)](https://github.com/facebook/react)
-[![vitest version](https://img.shields.io/badge/vitest-3.0.7-brightgreen)](https://www.vitest.dev/)
-[![vite version](https://img.shields.io/badge/vite-6.2.0-brightgreen)](https://vite.dev)
+[![typescript version](https://img.shields.io/badge/typescript-5.8.3-brightgreen)](https://www.typescriptlang.org/)
+[![react version](https://img.shields.io/badge/react-19.1.0-brightgreen)](https://github.com/facebook/react)
+[![vitest version](https://img.shields.io/badge/vitest-3.1.4-brightgreen)](https://www.vitest.dev/)
+[![vite version](https://img.shields.io/badge/vite-6.3.5-brightgreen)](https://vite.dev)
 
 
 A Vite plugin that transforms SVG files into React components using the [DOMParser](https://github.com/thednp/domparser).
