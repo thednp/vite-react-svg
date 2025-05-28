@@ -1,6 +1,6 @@
 {
   "name": "vite-react-svg",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Vite plugin to transform SVGs into React components",
   "author": "thednp",
   "license": "MIT",
@@ -41,7 +41,7 @@
     "bench": "node --experimental-transform-types demo/benchmark.ts",
     "test": "vitest --config vitest.config.ts",
     "test-ui": "vitest --config vitest.config.ts --ui=true",
-    "prepublishOnly": "pnpm up && pnpm lint && pnpm format && pnpm badges",
+    "prepublishOnly": "pnpm update --latest && pnpm lint && pnpm format && pnpm badges",
     "badges": "npx -p dependency-version-badge update-badge react typescript vitest vite",
     "format": "deno fmt src/*.mjs src/*.ts demo/*.tsx demo/*.ts",
     "lint": "pnpm lint:ts && pnpm check:ts",
@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^5.1.4",
-    "@thednp/domparser": "^0.0.3",
+    "@thednp/domparser": "^0.1.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

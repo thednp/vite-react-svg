@@ -9,8 +9,8 @@ dependencies:
     specifier: ^5.1.4
     version: 5.1.4
   '@thednp/domparser':
-    specifier: ^0.0.3
-    version: 0.0.3
+    specifier: ^0.1.2
+    version: 0.1.2
   react:
     specifier: ^19.1.0
     version: 19.1.0
@@ -848,8 +848,8 @@ packages:
       '@testing-library/dom': 10.4.0
     dev: true
 
-  /@thednp/domparser@0.0.3:
-    resolution: {integrity: sha512-pMZpuXG94tkTks6xchmLSvrODayqUh1Jehc/eGYQIEF45QLLy/GywInfQSP1iZ6j3Rye67HjRcdBU3+Qa214dA==}
+  /@thednp/domparser@0.1.2:
+    resolution: {integrity: sha512-Zh+EwSLiHe5X9NMJ5Dx/77c5klzfGDtom5z9TSzTdgpPlRCLcFzpZIHK7AIOTb9YrQH9wpPRzMEkcJ28HQYtgA==}
     dev: false
 
   /@types/aria-query@5.0.4:
