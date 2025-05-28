@@ -20,7 +20,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     name: Test on Node
 
     steps:
@@ -40,7 +40,7 @@ jobs:
       - name: Node Setup
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Install dependencies
