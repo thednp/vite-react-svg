@@ -16,7 +16,7 @@ on:
     branches: [master]
     paths:
       - src/index.mjs
-      - src/htmlToVanCode.mjs
+      - src/htmlToReact.mjs
       - src/index.test.ts
       - .github/workflows/codeql.yml
   pull_request:
@@ -24,7 +24,7 @@ on:
     branches: [master]
     paths:
       - src/index.mjs
-      - src/htmlToVanCode.mjs
+      - src/htmlToReact.mjs
       - src/index.test.ts
       - .github/workflows/codeql.yml
 jobs:
