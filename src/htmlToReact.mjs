@@ -97,11 +97,11 @@ const DomToReact = (input, depth = 0) => {
           : ("\n" + "  ".repeat(depth + 1))) + DomToReact(child, depth + 1)
       )
       .join(",");
-    output += `${childrenHTML}`;
+    output += childrenHTML;
   }
   // text/comment nodes
   if (nodeValue) {
-    output += `"${nodeValue}"`;
+    output += `\`${nodeValue}\``;
   }
   // Adjust newline for closing bracket
   output += isText

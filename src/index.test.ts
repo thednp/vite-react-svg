@@ -78,6 +78,7 @@ describe("vite-react-svg", () => {
     const html = `
   <fieldset>
     "This is a text node"
+    <svg xmlns:xlink="sample-text" xlink:actuate="sample-text" xlink:arcrole="sample" xlink:arcrole="test" xlink:role="bam" xlink:show="yes" xlink:title="Sample" xlink:type="svg"></svg>
     <button class="btn" aria-disabled="true" data-disabled="true" disabled>click me</button>
     <label for="text-input">Sample label</label>
     <input type="text" id="text-input" name="text-input" value="Sample value" />
