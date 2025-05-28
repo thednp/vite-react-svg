@@ -32,6 +32,13 @@ export const camelCase = (input) =>
 export const reactAttr = (att) => {
   if (att === "for") return "htmlFor";
   if (att === "class") return "className";
+  if (att === "xmlns:xlink") return "xmlnsXlink";
+  if (att === "xlink:actuate") return "xlinkActuate";
+  if (att === "xlink:arcrole") return "xlinkArcrole";
+  if (att === "xlink:role") return "xlinkRole";
+  if (att === "xlink:show") return "xlinkShow";
+  if (att === "xlink:title") return "xlinkTitle";
+  if (att === "xlink:type") return "xlinkType";
   if (att.startsWith("data-") || att.startsWith("aria-")) return att;
   if (att.includes("-")) return camelCase(att);
   return att;
