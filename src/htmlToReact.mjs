@@ -93,7 +93,7 @@ const DomToReact = (input, depth = 0) => {
       .map((child) =>
         (firstChildIsText
           ? (attributeEntries.length ? " " : "")
-          // @ts-expect-error
+          // @ts-expect-error - this is mjs
           : ("\n" + "  ".repeat(depth + 1))) + DomToReact(child, depth + 1)
       )
       .join(",");
@@ -122,7 +122,7 @@ export const htmlToReact = (input) => {
   const doc = htmlToDOM(input);
   if (!doc?.children.length) return { code: "", attributes: {} };
   const { tagName, nodeName, attributes, children } = doc.children[0];
-  // @ts-expect-error
+  // @ts-expect-error - this is mjs
   const code = DomToReact({ tagName, nodeName, attributes, children });
 
   return { code, attributes };
