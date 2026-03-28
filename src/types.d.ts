@@ -11,22 +11,16 @@ import type {
 import React from "react";
 
 import type { FilterPattern } from "@rollup/pluginutils";
-import { type ResolvedConfig, transformWithEsbuild } from "vite";
+import type { Plugin, ResolvedConfig } from "vite";
 
 export type VitePluginSvgReactOptions = Partial<ResolvedConfig> & {
-  esbuildOptions?: Parameters<typeof transformWithEsbuild>[2];
   exclude?: FilterPattern;
   include?: FilterPattern;
 };
 
 export declare const VitePluginReactSVG: (
   config?: VitePluginSvgReactOptions,
-) => {
-  name: string;
-  enforce: "pre" | "post" | undefined;
-  configResolved: (cfg: VitePluginSvgReactOptions) => void;
-  load: (id: string) => Promise<{ code: string; map: null } | null>;
-};
+) => Plugin<VitePluginSvgReactOptions>;
 export default VitePluginReactSVG;
 
 export type ReactCode = {
@@ -39,6 +33,11 @@ type ChildEl = ChildLike & Omit<NodeLike, "attributes"> & {
 } & {
   children: ChildLike[];
 };
+
+export type Load = (
+  id: string,
+  ops?: { ssr: boolean },
+) => Promise<({ code: string; map: null } | null)>;
 
 /**
  * Converts a `ChildLike` to a React code string

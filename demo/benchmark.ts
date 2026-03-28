@@ -5,7 +5,7 @@
  * ```bash
  * node --experimental-transform-types demo/benchmark.ts
  * ```
- * OR with Deno
+ * OR with Deno (not working with vite 8 yet)
  * ```bash
  * deno -A demo/benchmark.ts
  * ```
@@ -15,17 +15,22 @@ import path from "node:path";
 import { performance } from "node:perf_hooks";
 import svgPlugin from "../src/index.mjs";
 import svgRPlugin from "vite-plugin-svgr";
+import { mockPlugin8Context } from "../tests/fixtures/mock.ts";
 
 const svg = svgPlugin();
 const svgr = svgRPlugin();
-const filePath = path.resolve(process.cwd(), "src", "react.svg");
+const filePath = path.resolve(process.cwd(), "tests", "fixtures", "react.svg");
+
+// @ts-expect-error - we only specify the vite version
+svg.buildStart.call(mockPlugin8Context);
 
 // Warm-up phase to eliminate JIT compilation impact
 console.log("Warming up...");
 for (let i = 0; i < 10; i++) {
-  await svg.load("/src/react.svg");
   // @ts-expect-error
-  await svgr.load?.("/src/react.svg");
+  await svg.load(filePath);
+  // @ts-expect-error
+  await svgr.load?.(filePath);
 }
 
 const samples = 5;
@@ -41,6 +46,7 @@ for (let sample = 0; sample < samples; sample++) {
   // Test vite-react-svg
   const start1 = performance.now();
   for (let i = 0; i < iterations; i++) {
+    // @ts-expect-error
     await svg.load(filePath + "?react");
   }
   const end1 = performance.now();
@@ -84,6 +90,7 @@ console.log(
 );
 
 // Also compare first outputs to ensure they're equivalent
+// @ts-expect-error
 const comp1 = await svg.load(filePath + "?react");
 // @ts-expect-error
 const comp2 = await svgr.load?.(filePath + "?react");

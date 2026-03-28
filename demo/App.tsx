@@ -1,4 +1,4 @@
-import ReactIcon from "../src/react.svg?react";
+import ReactIcon from "../tests/fixtures/react.svg?react";
 
 const App = () => {
   return (
