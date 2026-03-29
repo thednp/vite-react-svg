@@ -15,14 +15,20 @@ import path from "node:path";
 import { performance } from "node:perf_hooks";
 import svgPlugin from "../src/index.mjs";
 import svgRPlugin from "vite-plugin-svgr";
-import { mockPlugin8Context } from "../tests/fixtures/mock.ts";
 
 const svg = svgPlugin();
 const svgr = svgRPlugin();
 const filePath = path.resolve(process.cwd(), "tests", "fixtures", "react.svg");
+const ctx = {
+  meta: {
+    viteVersion: "8.0.0",
+    // Mock rolldownVersion if needed for Vite 8+
+    rolldownVersion: "0.100.0",
+  },
+};
 
 // @ts-expect-error - we only specify the vite version
-svg.buildStart.call(mockPlugin8Context);
+svg.buildStart.call(ctx);
 
 // Warm-up phase to eliminate JIT compilation impact
 console.log("Warming up...");
@@ -30,7 +36,7 @@ for (let i = 0; i < 10; i++) {
   // @ts-expect-error
   await svg.load(filePath);
   // @ts-expect-error
-  await svgr.load?.(filePath);
+  await svgr.load?.call?.(ctx, filePath);
 }
 
 const samples = 5;
@@ -56,7 +62,7 @@ for (let sample = 0; sample < samples; sample++) {
   const start2 = performance.now();
   for (let i = 0; i < iterations; i++) {
     // @ts-expect-error
-    await svgr.load?.(filePath + "?react");
+    await svgr.load?.call(ctx, filePath + "?react");
   }
   const end2 = performance.now();
   results["vite-plugin-svgr"].push(end2 - start2);
@@ -93,7 +99,7 @@ console.log(
 // @ts-expect-error
 const comp1 = await svg.load(filePath + "?react");
 // @ts-expect-error
-const comp2 = await svgr.load?.(filePath + "?react");
+const comp2 = await svgr.load?.call(ctx, filePath + "?react");
 
 // Compare output sizes
 console.log("\nOutput size comparison:");

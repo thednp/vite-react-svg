@@ -8,7 +8,10 @@ const cwd = process.cwd();
 
 /** @typedef {typeof import("./types").VitePluginReactSVG} VitePluginReactSVG */
 /** @typedef {import("./types").VitePluginSvgReactOptions} VitePluginSvgReactOptions */
+/** @typedef {import("vite").ResolvedConfig} ResolvedConfig */
 /** @typedef {import("vite").BuildAppHook} BuildAppHook */
+/** @typedef {import("vite").ESBuildOptions} ESBuildOptions */
+/** @typedef {import("vite").OxcOptions} OxcOptions */
 /** @typedef {ThisParameterType<BuildAppHook>} PluginContext */
 
 /**
@@ -35,21 +38,23 @@ export default function SVGComponent(props = {}) {
 /** @type {VitePluginReactSVG} */
 export default function vitePluginSvgReact(options = {}) {
   const {
+    esbuildOptions,
+    oxcOptions,
     include = ["**/*.svg?react"],
     exclude,
   } = options;
   const filter = createFilter(include, exclude);
   const postfixRE = /[?#].*$/s;
-  /** @type {VitePluginSvgReactOptions} */
+  /** @type {Partial<ResolvedConfig>} */
   let config;
-  /** @type {PluginContext} */
-  let context;
+  let isOxc = true;
 
   return {
     name: "react-svg",
     enforce: "pre",
     buildStart() {
-      context = this;
+      const { viteVersion } = this.meta;
+      isOxc = Number(viteVersion[0]) >= 8;
     },
     // istanbul ignore next - impossible to test outside of vite runtime
     configResolved(cfg) {
@@ -71,18 +76,16 @@ export default function vitePluginSvgReact(options = {}) {
         const componentCode = transformSvgToReact(svgCode);
 
         const vite = await import("vite");
-        const viteVersion = context.meta.viteVersion;
-        const isVite8 = viteVersion?.startsWith("8");
-        const transformer = isVite8
-          ? "transformWithOxc"
-          : "transformWithEsbuild";
-        const langProp = isVite8 ? "lang" : "loader";
-        const mapProp = isVite8 ? "source_map" : "sourcemap";
+        const transformer = isOxc ? "transformWithOxc" : "transformWithEsbuild";
+        const langProp = isOxc ? "lang" : "loader";
+        const options = (isOxc ? oxcOptions : esbuildOptions) || {};
+        // const mapProp = isOxc ? "source_map" : "sourcemap";
 
         // Transform the component code using esbuild/oxc
         const result = await vite[transformer](componentCode, id, {
-          [langProp]: "js",
-          [mapProp]: true,
+          [langProp]: "jsx",
+          sourcemap: true,
+          ...options,
         });
 
         return {

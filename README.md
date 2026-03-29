@@ -11,12 +11,12 @@ This plugin significantly outperforms alternatives in terms of speed and consist
 
 Performance Benchmark (100 iterations x 5 samples):
 
-| Plugin           | Time (ms) | Std dev (ms) | Output Size (bytes) |
-| ---------------- |      ---: |         ---: |                ---: |
-| vite-react-svg   | **34.14** |   **±9.44** |                 783 |
-| vite-plugin-svgr |    172.73 |      ±92.57 |             **958** |
+| Plugin           | Time (ms) |  Output Size (bytes) |
+| ---------------- |      ---: |                 ---: |
+| vite-react-svg   | **53.19** |              **783** |
+| vite-plugin-svgr |    158.15 |                  958 |
 
-Relative Performance: **vite-react-svg** is 5x faster!
+Relative Performance: **vite-react-svg** is 3x faster!
 
 **Notes**
 - find [demo/benchmarks.ts](https://github.com/thednp/vite-react-svg/blob/master/demo/benchmark.ts) and run these tests yourself.
@@ -32,14 +32,10 @@ Relative Performance: **vite-react-svg** is 5x faster!
 Visual Performance Comparison:
 ```
 Processing Time (ms) - Lower is better
-vite-react-svg  │███ 34ms
-vite-plugin-svgr│█████████████████ 173ms
-
-Standard Deviation (ms) - Lower is better
-vite-react-svg  │█ 9ms
-vite-plugin-svgr│█████████████████ 93ms
+vite-react-svg  │█████ 53ms
+vite-plugin-svgr│████████████████ 158ms
 ```
-**Note** - the results are coming from a desktop PC with NodeJS v24.x. Your results my vary.
+**Note** - the results are coming from a desktop PC with NodeJS v24.x and vite 8. Your results my vary.
 
 
 ## Features
@@ -95,11 +91,15 @@ While the default options work just fine, for your convenience the plugin allows
 
 ```ts
 interface VitePluginReactSvgOptions {
+  oxcOptions?: OxcOptions,
+  esbuildOptions?: EsbuildTransformOptions,
   include?: string | RegExp | (string | RegExp)[]
   exclude?: string | RegExp | (string | RegExp)[]
 }
 ```
 
+* `oxcOptions`: additional oxc transformation options for `rolldown`;
+* `esbuildOptions`: **deprecated** [EsbuildTransformOptions](https://esbuild.github.io/api/#transform) esbuild will make sure the plugin will work seamless within the Vite ecosystem and provides some additional options;
 * `include`: filter option to **include** one or more RegExp for file IDs; the default value is `["**/*.svg?react"]`;
 * `exclude`: filter option to **exclude** one or more RegExp for file IDs.
 

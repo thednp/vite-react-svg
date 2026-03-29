@@ -11,9 +11,17 @@ import type {
 import React from "react";
 
 import type { FilterPattern } from "@rollup/pluginutils";
-import type { Plugin, ResolvedConfig } from "vite";
+import type {
+  EsbuildTransformOptions,
+  OxcOptions,
+  Plugin,
+  ResolvedConfig,
+} from "vite";
 
-export type VitePluginSvgReactOptions = Partial<ResolvedConfig> & {
+export type VitePluginSvgReactOptions = {
+  oxcOptions?: OxcOptions;
+  /** @deprecated */
+  esbuildOptions?: EsbuildTransformOptions;
   exclude?: FilterPattern;
   include?: FilterPattern;
 };
@@ -33,11 +41,6 @@ type ChildEl = ChildLike & Omit<NodeLike, "attributes"> & {
 } & {
   children: ChildLike[];
 };
-
-export type Load = (
-  id: string,
-  ops?: { ssr: boolean },
-) => Promise<({ code: string; map: null } | null)>;
 
 /**
  * Converts a `ChildLike` to a React code string

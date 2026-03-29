@@ -1,7 +1,7 @@
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import { describe, expect, it, vi } from "vitest";
-import type { VitePluginSvgReactOptions, Load } from "../src/types";
+import type { VitePluginSvgReactOptions } from "../src/types";
 import { mockPlugin7Context, mockPlugin8Context } from "./fixtures/mock"
 
 // import plugin
@@ -10,6 +10,11 @@ import svgReact from "../src/index.mjs";
 import { htmlToReact } from "../src/htmlToReact.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+type Load = (
+  id: string,
+  ops?: { ssr: boolean },
+) => Promise<({ code: string; map: null } | null)>;
 
 vi.mock('vite', async () => {
   const actual = await vi.importActual('vite');
@@ -50,22 +55,23 @@ describe("vite-react-svg", () => {
     const svgPath = resolve(__dirname, "./fixtures/react.svg");
     const result = await (plugin.load as Load)(svgPath + "?react");
 
-    if (!result) return;
-
     expect(result).toBeDefined();
-    expect(typeof result.code).toBe("string");
+    expect(typeof result?.code).toBe("string");
 
     // Check if the transformed code includes React imports
-    expect(result.code).toContain("import { createElement } from");
+    expect(result?.code).toContain("import { createElement } from");
 
     // Check if the transformed code creates a component
-    expect(result.code).toContain("export default function SVGComponent");
+    expect(result?.code).toContain("export default function SVGComponent");
 
     // Check if the component handles props
-    expect(result.code).toContain("props = {}");
+    expect(result?.code).toContain("props = {}");
 
     // Check if SVG content is included
-    expect(result.code).toContain("viewBox");
+    expect(result?.code).toContain("viewBox");
+
+    // Check if SVG map is included
+    expect(result?.map).toBeDefined();
   });
 
   it("should transform svg files with ?react query with vite 8", async () => {
@@ -75,22 +81,23 @@ describe("vite-react-svg", () => {
     const svgPath = resolve(__dirname, "./fixtures/react.svg");
     const result = await (plugin.load as Load)(svgPath + "?react");
 
-    if (!result) return;
-
     expect(result).toBeDefined();
-    expect(typeof result.code).toBe("string");
+    expect(typeof result?.code).toBe("string");
 
     // Check if the transformed code includes React imports
-    expect(result.code).toContain("import { createElement } from");
+    expect(result?.code).toContain("import { createElement } from");
 
     // Check if the transformed code creates a component
-    expect(result.code).toContain("export default function SVGComponent");
+    expect(result?.code).toContain("export default function SVGComponent");
 
     // Check if the component handles props
-    expect(result.code).toContain("props = {}");
+    expect(result?.code).toContain("props = {}");
 
     // Check if SVG content is included
-    expect(result.code).toContain("viewBox");
+    expect(result?.code).toContain("viewBox");
+
+    // Check if SVG map is included
+    expect(result?.map).toBeDefined();
   });
 
   it("should not have any default props", async () => {
